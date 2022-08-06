@@ -25,7 +25,7 @@ import axios from 'axios';
 // that then the request will be aborted.
 const customAxios = axios.create({
     baseURL: murl,
-    timeout: 10000, 
+    timeout: 20000, 
     // headers: { 'api-key': 'eyJz-CI6Ikp-4pWY-lhdCI6' }
 });
 
@@ -49,6 +49,10 @@ const responseHandler = response => {
 };
 
 const errorHandler = error => {
+    if(error.message){
+        alert("error: "+error.message)
+        console.log("err: "+JSON.stringify(error.message))
+    }
     if(error.response!=undefined){
       
         if(error.response.status==401){

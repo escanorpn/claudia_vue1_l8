@@ -442,9 +442,7 @@
 console.log(JSON.stringify(form_data))
       api.post('project',form_data).then((response) => {
       console.log("response: "+ JSON.stringify(response));
-       
-   window.setTimeout(() => {
-    this.emsg4 = response.data;
+   this.emsg4 = response.data;
             //  this.clearForm1();
             this.error4 = true
           if(response.data.code==1){ 
@@ -453,18 +451,16 @@ console.log(JSON.stringify(form_data))
             this.error4 = true
            
           }
-        }, 1500)
+          this.clearForm2();
+          this.sending = false
    
 }).catch(function (response) {
           //handle error
-          console.log("error"+response.response.status)
-      });
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-         this.clearForm2();
-          this.sending = false
+          console.log("error"+JSON.stringify(response))
           
-        }, 1500)
+          this.sending = false
+      });
+    
 
       },
       saveService (){
@@ -488,7 +484,6 @@ console.log(JSON.stringify(form_data))
       api.post('service',form_data).then((response) => {
       console.log("response: "+ JSON.stringify(response));
        
-   window.setTimeout(() => {
     this.emsg1 = response.data;
             //  this.clearForm1();
             this.error1 = true
@@ -496,21 +491,17 @@ console.log(JSON.stringify(form_data))
             this.emsg1 = response.data.message;
             //  this.clearForm1();
             this.error1 = true
-           
           }
-        }, 1500)
-   
+          this.sending = false
+           this.clearForm2();
 }).catch(function (response) {
           //handle error
-          console.log("error"+response.response.status)
+          console.log("error"+JSON.stringify(response))
+          // this.clearForm2();
+          this.sending = false
       });
         // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-         this.clearForm2();
-          this.sending = false
-          
-        }, 1500)
-
+        
       },
       saveProduct () {
         this.sending = true
@@ -532,8 +523,6 @@ console.log(murl)
 console.log(JSON.stringify(form_data))
 api.post('product',form_data).then((response) => {
    console.log("response: "+ JSON.stringify(response));
-       
-   window.setTimeout(() => {
     this.emsg = response.data;
             //  this.clearForm1();
             this.error = true
@@ -543,20 +532,20 @@ api.post('product',form_data).then((response) => {
             this.error = true
            
           }
-        }, 1500)
-   
+    this.sending = false
 }).catch(function (response) {
           //handle error
           // console.log("error"+response.response.stauts)
-          console.log("error: "+response)
+           this.sending = false
+          console.log("err: "+JSON.stringify(response))
       });
 
         // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-        //  this.clearForm1();
-          this.sending = false
+        // window.setTimeout(() => {
+        // //  this.clearForm1();
+         
           
-        }, 1500)
+        // }, 1500)
 
       },
 saveGallery(){
@@ -578,7 +567,6 @@ saveGallery(){
 api.post('company',form_data).then((response) => {
    console.log("company_response: "+ JSON.stringify(response));
        
-   window.setTimeout(() => {
     this.emsg = response.data;
             //  this.clearForm1();
             this.error = true
@@ -588,19 +576,16 @@ api.post('company',form_data).then((response) => {
             this.error = true
            
           }
-        }, 1500)
+        this.clearForm1();
+          this.sending = false
    
 }).catch(function (response) {
           //handle error
           console.log("error"+JSON.stringify(response))
+          this.sending = false
       });
 
-  //       // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-         this.clearForm1();
-          this.sending = false
-          
-        }, 1500)
+
 
       },
 
