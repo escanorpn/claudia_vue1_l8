@@ -35,7 +35,7 @@
         </a-menu-item>
         
         <a-menu-item key="4" @click="mChange4">
-          <span class="nav-text">Gallery</span>
+          <span class="nav-text">Recipes</span>
         </a-menu-item>
         <!-- <a-menu-item key="5" @click="mChange5">
           <span class="nav-text">Projects</span>
@@ -52,7 +52,7 @@
            <mUpload v-if="mProduct === 1" />
            <mServices v-if="mProduct === 2" />
            <mFolio v-if="mProduct === 3" />
-           <mGallery v-if="mProduct === 4" />
+           <mRecipe v-if="mProduct === 4" />
            <mProject v-if="mProduct === 5" />
         </div>
       </a-layout-content>
@@ -76,7 +76,8 @@
 import mUpload from "./upload.vue"
 import mServices from "./services.vue"
 import mFolio from "./portfolio.vue"
-import mGallery from "./gallery/gallery.vue"
+// import mGallery from "./gallery/gallery.vue"
+import mRecipe from "./recipe/main.vue"
 import mProject from "./project/project.vue"
   // import {  mdbCard, mdbCardBody,  } from 'mdbvue';
   
@@ -97,8 +98,9 @@ const axios = require('axios');
         // mSpare,
         mServices,
         mFolio,
-        mGallery,
+        // mGallery,
         mProject,
+        mRecipe,
         // UploadImages,
         // mdbCard,
         // mdbCardBody,

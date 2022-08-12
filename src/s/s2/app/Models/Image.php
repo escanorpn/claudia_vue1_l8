@@ -10,7 +10,7 @@ class Image extends Model
     // use HasFactory;
     protected $table = 'images';
     protected $fillable = [
-     'url', 'product_id', 'service_id'
+     'url', 'product_id', 'service_id', 'recipe_id'
     ];
   public function product()
   {
@@ -20,6 +20,10 @@ class Image extends Model
   public function service()
   {
     return $this->belongsTo('App\Service', 'service_id');
+  }
+  public function recipe()
+  {
+    return $this->belongsTo('App\Recipe', 'recipe_id');
   }
 //   public function service(){
 //     $this->belongsTo('App\Service');

@@ -57,6 +57,62 @@
       </form>
       </a-tab-pane> -->
      
+  <a-tab-pane key="4" tab="Recipes" force-render>
+    <form novalidate style="
+    margin-left: auto;
+    margin-right: auto;z-index:0;
+    justify-content: space-around;" class="md-layout" @submit.prevent="validateRecipe">
+      <md-card class="md-layout-item md-size-50 md-small-size-100">
+        <md-card-header>
+          <div class="md-title">Recipes</div>
+          </md-card-header>
+
+        <md-card-content>
+         <div class="md-layout md-gutter">
+      
+            <div class="md-layout-item md-small-size-100">
+              <mdb-input type="text" label="Heading" outline :disabled="sending" 
+              v-model="heading4" name="heading" />
+
+            </div>
+
+       
+          </div>
+        <div class="md-layout md-gutter">
+          <div class="md-layout-item md-small-size-100">
+            
+              <mdb-input
+                type="textarea"
+                outline
+                inputClass="z-depth-1 p-3"
+                label="Description"  :rows="3"
+                :disabled="sending"
+                v-model="desc4"
+              />
+              
+             
+          </div>
+        </div>
+        <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass2('rImages')">
+            <UploadImages  @changed="handleRimages"/>
+              <span class="md-error" v-if="!$v.form.rImages.required">An Image is required</span>
+              </md-field>
+             
+            </div>
+        </div>
+  
+        </md-card-content>
+          <div class="text-center py-4 mt-3">
+          <mdb-btn style="color:#e9ecef;background-color:#0c0f24;" color="" type="submit" :disabled="sending">Add</mdb-btn>
+        </div>
+
+      </md-card>
+        <md-snackbar :md-active.sync="error4">{{ emsg4 }} </md-snackbar>
+      </form>
+      </a-tab-pane>
+      
   <a-tab-pane key="3" tab="Services" force-render>
     <form novalidate style="
     margin-left: auto;
@@ -186,38 +242,23 @@
     justify-content: space-around;" class="md-layout" @submit.prevent="validateGallery">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
-          <!-- <div class="md-title">Companies We have worked with</div> -->
         </md-card-header>
 
         <md-card-content>
-      
-       
                 <div class="md-layout md-gutter">
-           
             <div class="md-layout-item md-small-size-100">
-                          
            <md-field :class="getValidationClass('gImages')">
-            <!-- <label for="email">Image</label> -->
-            
             <UploadImages  @changed="handleGimages"/>
-            
             <span class="md-error" v-if="!$v.form.gImages.required">An Image is required</span>
-           
           </md-field>
-          
             </div>
           </div>
-  
-        
         </md-card-content>
           <div class="text-center py-4 mt-3">
           <mdb-btn style="color:#e9ecef;background-color:#0c0f24;" color="" type="submit" :disabled="sending">Add</mdb-btn>
         </div>
-
       </md-card>
-
       <md-snackbar :md-active.sync="error3">{{ emsg3 }} </md-snackbar>
-     
     </form>
       </a-tab-pane>
     </a-tabs>
@@ -330,6 +371,10 @@
           required,
           // sImages
         },
+        rImages: {
+          required,
+          // sImages
+        },
         desc1: {
           // required,
           // sImages
@@ -360,6 +405,11 @@
       // alert( this.collapsed );
     },
     
+         handleRimages(files){
+          //  alert("foo"+files[0].name);
+                console.log(files)
+                this.rImages=files;
+            },
          handlePimages(files){
           //  alert("foo"+files[0].name);
                 console.log(files)
@@ -430,6 +480,11 @@
         this.desc1 = null
         this.pImages = null
       },
+      clearForm4 () {
+        this.heading4 = null
+        this.desc4 = null
+        this.rImages = null
+      },
 
       saveProject (){
         this.sending = true
@@ -463,6 +518,47 @@ console.log(JSON.stringify(form_data))
     
 
       },
+      saveRecipe (){
+        this.sending = true
+        // var murl=this.$store.state.mUrl;
+        var form_data = new FormData();
+
+      form_data.append('name',this.heading4);
+      form_data.append('description',this.desc4);
+      // form_data.append('images[]',this.sImages);
+      for( var i = 0; i < this.rImages.length; i++ ){
+          let file = this.rImages[i];
+          console.log(file);
+          form_data.append('images[]', file);
+        }
+       for (var pair of form_data.entries()) {
+        console.log(pair[0]+ ' - ' + pair[1]); 
+      }
+// console.log(murl)
+console.log(JSON.stringify(form_data))
+      api.post('recipe',form_data).then((response) => {
+      console.log("response: "+ JSON.stringify(response));
+       
+    this.emsg4 = response.data;
+            //  this.clearForm1();
+            this.error4 = true
+          if(response.data.code==1){ 
+            this.emsg4 = response.data.message;
+            //  this.clearForm1();
+            this.error4 = true
+          }
+          this.sending = false
+           this.clearForm4();
+}).catch(function (response) {
+          //handle error
+          console.log("error"+JSON.stringify(response))
+          // this.clearForm2();
+          this.sending = false
+      });
+        // Instead of this timeout, here you can call your API
+        
+      },
+      
       saveService (){
         this.sending = true
         // var murl=this.$store.state.mUrl;
@@ -606,6 +702,27 @@ api.post('company',form_data).then((response) => {
           this.emsg4 = "Please add an Image";
         }else{
           this.saveProject();
+        }
+   
+      },
+      
+          validateRecipe () {
+            // this.$v.$touch()
+            // alert(this.desc1)
+        if(this.heading4==null){
+           alert("There is an error")
+          this.error4 = true;
+          this.emsg4 = "Please add a heading";
+        }else if(this.desc4==null){
+          this.error4 = true;
+          alert("There is an error")
+          this.emsg4 = "Please add a description";
+        }else if(this.rImages==null){
+          this.error4 = true;
+          alert("There is an error")
+          this.emsg4 = "Please add an Image";
+        }else{
+          this.saveRecipe();
         }
    
       },

@@ -129,9 +129,9 @@ api.post('login',data).then((response) => {
     this.$router.push('/Products');
     window.location.reload();
    }
-}).catch(function (response) {
+}).catch(function () {
           //handle error
-          alert("error: "+response)
+          // alert("error: "+response)
           // console.log("error: "+response)
       });
 
