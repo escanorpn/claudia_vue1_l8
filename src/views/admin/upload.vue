@@ -779,40 +779,5 @@ api.post('company',form_data).then((response) => {
 </script>
 
 <style lang="scss" scoped>
-.card .card-body{
-    padding: 0px;
-}
-  .md-progress-bar {
-    position: fixed;
-    height:7px;
-    top: 48px;
-    right: 0;
-    left: 0;
-    z-index: 3;
-  }
-   .card {
-        max-width: 400px;
-        width:80%;
-        margin-left:auto;
-        margin-right:auto;
-    }
-    $c1: rgb(167, 202, 164);
-    $c2:  #001529;
-    $c3:   rgba(0, 0, 0, 0.87) ;
-    $c4:  rgba(0, 0, 0, 0.87);
-    .mTop{
-        /* margin-top: 73px; */
-        // background: linear-gradient(337deg,$c1 15%,  $c4 4%);
-        // background: linear-gradient($c2,$c3);
-        // margin-top: -23%;
-        // padding-top: 30%;
-    }
-        ul.ant-menu-inline-collapsed {
-    width: 8px;
 
-    }
-        
-    li.ant-menu-item{
-        padding: 1px;
-    }
 </style>

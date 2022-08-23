@@ -270,24 +270,7 @@ const axios = require('axios');
 </script>
 
 <style lang="scss" scoped>
-  .md-progress-bar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-  }
-   .card {
-        max-width: 400px;
-        width:80%;
-        margin-left:auto;
-      
-      margin-right:auto;
-    }
-    // $c1: rgb(167, 202, 164);
-    // $c2:  #001529;
-    // $c3:   rgba(8, 8, 8, 0.87) ;
-    // $c4:  rgba(0, 0, 0, 0.87);
-    
+ 
     $c1: #275d2b;
     $c2:  #010902;
     $c3:   #45100f ;
@@ -300,13 +283,5 @@ const axios = require('axios');
         
         // margin-top: -23%;
         // padding-top: 30%;
-    }
-        ul.ant-menu-inline-collapsed {
-    width: 8px;
-
-    }
-        
-    li.ant-menu-item{
-        padding: 1px;
     }
 </style>

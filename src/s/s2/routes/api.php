@@ -44,6 +44,7 @@ Route::group(['middleware' => ['jwt.verify'],
     Route::post('/project', [ProjectController::class, 'addProject']);
     Route::delete('/project/{id}', [ProjectController::class, 'destroy']);
 
+    Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
     Route::post('/recipe', [RecipeController::class, 'addRecipe']);
     Route::delete('/recipe/{id}', [RecipeController::class, 'destroy']);
     
@@ -63,6 +64,7 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product_limited', [ProductController::class, 'index_limited']);
 Route::get('/project', [ProjectController::class, 'index']);
 Route::get('/recipe', [RecipeController::class, 'index']);
+Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
 // Route::post('/login', [AuthController::class, 'login']);
 
 // Route::post('/product1', [ProductController::class, 'addProduct']); 

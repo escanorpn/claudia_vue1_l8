@@ -82,7 +82,21 @@ class RecipeController extends Controller
     {
         //
     }
+    public function searchRecipe(Request $request) {
+        $s=$request->s;
+        $recipes = [];
+        $recipes=RecipeResource::collection(Recipe::query()
+        ->where('name','LIKE',"%{$s}%")
+        ->orWhere('description','LIKE',"%{$s}%")
+        ->get());
 
+        return response()->json([
+            "success" => true,
+            "message" => "Recipe List",
+            "val" => "2",
+            "data" => $recipes
+            ]);
+    }
     public function addRecipe(Request $request) {
         $imagesName = [];
         $response = [];

@@ -1,12 +1,15 @@
 <template>
 <div class=" bgz">
-   <md-progress-bar md-mode="indeterminate" v-if="sending" />
+
+     
     <div class="page-header" style="backgroundColor:#0f0404cc;padding-bottom: 50px;" >
    
   <!-- Card -->
   <mdb-card class="mTop1">
     <mdb-card-body>
-     
+       <div class="loading-box" v-if="loading1">
+                <div class="loader"></div>
+              </div>
       <form @submit="handleSubmit">
         <p class="h4 text-center py-4">Log in</p>
         <div class="grey-text">
@@ -68,13 +71,15 @@
       // mdSnackbar
     },
     
- data: () => ({
+  data() {
+    return {
       hasErrors,
       form: this.$form.createForm(this, { name: 'horizontal_login' }),
       pass:"empty",
       email:"empty",
-      sending:true,
-    }),
+      sending:false,
+      loading1:false,
+    }},
   mounted() {
        
     this.$nextTick(() => {
@@ -93,17 +98,17 @@
       const { getFieldError, isFieldTouched } = this.form;
       return isFieldTouched('password') && getFieldError('password');
     },
-    loading(){
-// alert("foo")
- this.sending=true;
-    },
+
     handleSubmit(e) {
-      this.loading();
+      
       e.preventDefault();
+       this.loading1=true;
+      //  alert(this.loading1)
       const form_data = new FormData();
        form_data.append('email',this.email);
        form_data.append('pass',this.pass);
       console.log(this.pass);
+
       this.sending=true;
 //  const data = { 
 //     email:this.email ,
@@ -117,6 +122,7 @@
 // var murl=this.$store.state.mUrl;
 // alert(murl);
 api.post('login',data).then((response) => {
+   this.loading1=false;
    console.log("response: "+ JSON.stringify(response));
    let access_token=response.data.token.original.access_token;
    if(response.data.val==22 & !response.data.error){
@@ -133,9 +139,12 @@ api.post('login',data).then((response) => {
           //handle error
           // alert("error: "+response)
           // console.log("error: "+response)
+           this.loading1=false;
       });
 
       this.sending=false;
+     
+      
       //   axios({
       //     method: 'POST',
       //     url: murl+'login?api_token=',
@@ -186,6 +195,36 @@ api.post('login',data).then((response) => {
 
 
 <style>
+
+.loading-box{
+     position: fixed;
+    width: 100%;
+    height: 5px;
+    border-radius: 50px;
+    /* border: 2px solid #ededed; */
+    overflow: hidden;
+    top: 38px;
+    left: 0;
+}
+.loader{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #3c0d0b,#b6b5ff, #ff9797,#3c0d0b);
+    left: 0%;
+    animation: load 1s linear infinite;
+}
+
+
+@keyframes load{
+    0%{
+        left: -100%;
+    }
+    100%{
+        left: 100%;
+    }
+}
   .md-progress-bar {
     position: fixed;
     height:7px;
