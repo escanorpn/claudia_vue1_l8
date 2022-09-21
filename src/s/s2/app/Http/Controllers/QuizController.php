@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Quiz;
+use App\Models\quiz;
 
 class QuizController extends Controller
 {
@@ -11,7 +11,7 @@ class QuizController extends Controller
     public function index(Request $request)
     {
         $response = [];
-        $data=Quiz::all();
+        $data=quiz::all();
        
         return response()->json([
             "success" => true,
@@ -23,7 +23,7 @@ class QuizController extends Controller
     public function update(Request $request)
     {
         $response = [];
-        $affected=Quiz::where('id', 1)->update(['link' => $request->link]);
+        $affected=quiz::where('id', 1)->update(['link' => $request->link]);
        
         return response()->json([
             "success" => true,
