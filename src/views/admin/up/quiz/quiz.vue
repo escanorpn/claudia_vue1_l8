@@ -113,7 +113,7 @@ console.log(JSON.stringify(form_data))
       api.post('quiz',form_data).then((response) => {
       console.log("response: "+ JSON.stringify(response));
        
-    this.emsg4 = response.data;
+          this.emsg4 = response.data;
             //  this.clearForm1();
             this.error4 = true
           if(response.data.code==2){ 

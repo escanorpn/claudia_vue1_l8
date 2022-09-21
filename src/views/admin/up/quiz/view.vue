@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <div id="editor" ref="editor">HTML TABLE HERE</div> -->
+    <div id="editor" ref="editor">HTML TABLE HERE</div>
     <iframe 
         v-if="loaded"
         :src="iframe.src"
@@ -27,7 +27,8 @@ export default {
       }
     }
   },
-  methods(){
+  methods:{
+  init(){
     api.get('quiz').then((response) => {
       console.log("response: "+ JSON.stringify(response));
        
@@ -48,11 +49,14 @@ export default {
           // this.clearForm2();
           this.sending = false
       });
+  }
   },
+   
   mounted() {
-    let editor = this.$refs.editor;
+    this.init();
+    // let editor = this.$refs.editor;
     this.iframe.style = {
-      position: 'absolute',
+      // position: 'absolute',
       // width: window.innerWidth,
       // height: window.innerHeight,
       
@@ -60,10 +64,11 @@ export default {
       width: 89+ "%",
       // <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd4F2CZX5POMMBUg0wLyfiE2xhex4fSDSRlGWQbcXonHddh4A/viewform?embedded=true" width="640" height="1049" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       // top: -editor.offsetTop + "px",
-      left: -editor.offsetLeft + "px",
+      // left: -editor.offsetLeft + "px",
     }    
     this.iframe.wrapperStyle = {
-      overflow: 'hidden',
+      // overflow: 'hidden',
+      // height: 89+ "%",
       // height: 1049+ "px",
       // width: editor.clientWidth + "px",
     } 
