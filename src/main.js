@@ -21,6 +21,14 @@ import VueAxios from 'vue-axios'
 import VueLazyload from 'vue-lazyload'
 import api from "./views/services/api";
 
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
+
+Vue.use(VueQuillEditor, /* { default global options } */)
+
 import VueCookies from 'vue-cookies'
 import * as cr from 'vue-nacl-crypter' 
 const Dcrypt = cr.VueNaclCrypter

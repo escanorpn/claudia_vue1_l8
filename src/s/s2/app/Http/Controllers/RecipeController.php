@@ -16,15 +16,31 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $init=$request->id;
+        // $last=$request->id+4;
+        if($request->direction==2){
+            $recipes = RecipeResource::collection(Recipe::where('id', '<', $request->id-$request->counter)->limit($request->counter)->orderBy('id', 'DESC')->get());
+        }else{
+            $recipes = RecipeResource::collection(Recipe::where('id', '>', $request->id)->limit($request->counter)->get());
+        }
               //
-              $recipes = RecipeResource::collection(Recipe::all());
+            //   $recipes = RecipeResource::collection(Recipe::all());
+            //   $recipes = RecipeResource::collection(Recipe::limit(3)->get());
+            //   $recipes = RecipeResource::collection(Recipe::where('id', '>', 1)->limit(4)->orderBy('id', 'ASC')->get());
+             
+            //   $recipes = RecipeResource::collection(Recipe::where('id', '>', $init)->where('id', '<', $last)->get());
+        //    $query=Recipe::where('id', '>','3')->toSql();
+        
+              $count = Recipe::get()->count();
               return response()->json([
               "success" => true,
               "message" => "Recipe List",
               "val" => "2",
-              "data" => $recipes
+              "data" => $recipes,
+              "count" => $count,
+            //   "query" => $query
               ]);
     }
 
@@ -85,10 +101,17 @@ class RecipeController extends Controller
     public function searchRecipe(Request $request) {
         $s=$request->s;
         $recipes = [];
-        $recipes=RecipeResource::collection(Recipe::query()
-        ->where('name','LIKE',"%{$s}%")
+        $recipes = Recipe::where('name','LIKE',"%{$s}%")
         ->orWhere('description','LIKE',"%{$s}%")
-        ->get());
+        ->select('name')
+        ->distinct('name')
+        ->get();
+        // $recipes=RecipeResource::collection(Recipe::query()
+        // ->where('name','LIKE',"%{$s}%")
+        // ->orWhere('description','LIKE',"%{$s}%")
+        // // ->groupBy('name')
+        // ->distinct('name')
+        // ->get());
 
         return response()->json([
             "success" => true,
@@ -114,6 +137,13 @@ class RecipeController extends Controller
         $item = new Recipe;
         $item->name = $request->name;
         $item->description = $request->description;
+        $item->ptime = $request->pTime;
+        $item->ctime = $request->cTime;
+        $item->cat = $request->mCat;
+        $item->dt = $request->mDate;
+        $item->servings = $request->servings;
+        $item->instructions = $request->Instructions;
+        $item->ingredients = $request->Ingredients;
         $item->save();
         if ($file1 = $request->file('images')) {
             foreach($file1 as $file){
@@ -132,7 +162,7 @@ class RecipeController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "File successfully uploaded",
-                // "file" => $file
+                "code" => 2
             ]);
    
         } else {

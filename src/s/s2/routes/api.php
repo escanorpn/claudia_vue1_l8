@@ -8,6 +8,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\QuizController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -55,6 +56,11 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::get('/project', [ProjectController::class, 'index']);
 Route::get('/recipe', [RecipeController::class, 'index']);
 
+Route::post('/quiz', [QuizController::class, 'update']);
+Route::get('/quiz', [QuizController::class, 'index']);
+
+Route::post('/recipe1', [RecipeController::class, 'index']);
+
 });
 
 Route::get('/company', [CompanyController::class, 'index']);
@@ -64,7 +70,10 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product_limited', [ProductController::class, 'index_limited']);
 Route::get('/project', [ProjectController::class, 'index']);
 Route::get('/recipe', [RecipeController::class, 'index']);
+Route::post('/recipe', [RecipeController::class, 'index']);
 Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
+Route::get('/quiz', [QuizController::class, 'index']);
+
 // Route::post('/login', [AuthController::class, 'login']);
 
 // Route::post('/product1', [ProductController::class, 'addProduct']); 

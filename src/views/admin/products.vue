@@ -37,6 +37,9 @@
         <a-menu-item key="4" @click="mChange4">
           <span class="nav-text">Recipes</span>
         </a-menu-item>
+        <a-menu-item key="5" @click="mChange5">
+          <span class="nav-text">Quiz</span>
+        </a-menu-item>
         <!-- <a-menu-item key="5" @click="mChange5">
           <span class="nav-text">Projects</span>
         </a-menu-item> -->
@@ -46,14 +49,14 @@
     <a-layout class="mTop">
       <!-- <a-layout-header :style="{ background: '#fff', padding: 0 }" /> -->
       <a-layout-content :style="{ margin: '54px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+        <div :style="{ padding: '14px', background: '#fff', minHeight: '360px' }">
            <!-- <mOto     v-if="mProduct === 1"/>
            <mSpare v-if="mProduct === 2" /> -->
            <mUpload v-if="mProduct === 1" />
            <mServices v-if="mProduct === 2" />
            <mFolio v-if="mProduct === 3" />
            <mRecipe v-if="mProduct === 4" />
-           <mProject v-if="mProduct === 5" />
+           <mQuiz v-if="mProduct === 5" />
         </div>
       </a-layout-content>
       <!-- <a-layout-footer style="textAlign: center">
@@ -77,8 +80,8 @@ import mUpload from "./upload.vue"
 import mServices from "./services.vue"
 import mFolio from "./portfolio.vue"
 // import mGallery from "./gallery/gallery.vue"
-import mRecipe from "./recipe/main.vue"
-import mProject from "./project/project.vue"
+import mRecipe from "./recipe/n/Main.vue"
+import mQuiz from "./up/quiz/view.vue"
   // import {  mdbCard, mdbCardBody,  } from 'mdbvue';
   
 //  import UploadImages from "vue-upload-drop-images"
@@ -99,7 +102,7 @@ const axios = require('axios');
         mServices,
         mFolio,
         // mGallery,
-        mProject,
+        mQuiz,
         mRecipe,
         // UploadImages,
         // mdbCard,
