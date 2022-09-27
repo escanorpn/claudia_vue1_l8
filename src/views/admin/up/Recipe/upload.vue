@@ -34,8 +34,15 @@
         v-model="mDate" name="heading" />
       </mdb-col>
       <mdb-col col="sm">   
-        <mdb-input type="text" label="Category" outline :disabled="sending" 
-        v-model="mCat" name="Prep Time" />
+        <select class="browser-default custom-select"  v-model="mCat" Category>
+    <!-- <option selected value="11">Open this select menu</option> -->
+    <option value="Breakfast">Breakfast</option>
+    <option value="Savory">Savory</option>
+    <option value="Desserts">Desserts</option>
+    <option value="Drinks">Drinks</option>
+  </select>
+        <!-- <mdb-input type="text" label="Category" outline :disabled="sending" 
+        v-model="mCat" name="Prep Time" /> -->
       </mdb-col> 
     </mdb-row>
 <!-- <mdb-row>

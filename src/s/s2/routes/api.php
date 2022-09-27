@@ -69,9 +69,10 @@ Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product_limited', [ProductController::class, 'index_limited']);
 Route::get('/project', [ProjectController::class, 'index']);
-Route::get('/recipe', [RecipeController::class, 'index']);
+Route::get('/recipe', [RecipeController::class, 'index1']);
 Route::post('/recipe', [RecipeController::class, 'index']);
 Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
+Route::post('/frecipe', [RecipeController::class, 'filtered']);
 Route::get('/quiz', [QuizController::class, 'index']);
 
 // Route::post('/login', [AuthController::class, 'login']);

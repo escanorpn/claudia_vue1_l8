@@ -100,7 +100,7 @@
     },
 
     handleSubmit(e) {
-      
+      const context=this;
       e.preventDefault();
        this.loading1=true;
       //  alert(this.loading1)
@@ -139,10 +139,10 @@ api.post('login',data).then((response) => {
           //handle error
           // alert("error: "+response)
           // console.log("error: "+response)
-           this.loading1=false;
+          context.loading1=false;
       });
 
-      this.sending=false;
+      context.sending=false;
      
       
       //   axios({

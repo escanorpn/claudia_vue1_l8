@@ -6,6 +6,7 @@ import Init from './views/init.vue'
 // import Main from './views/mainContent.vue'
 import Admin from './views/admin/login.vue'
 import Products from './views/admin/products.vue'
+import Ritem from './views/admin/recipe/rItem/Main.vue'
 
 
 Vue.use(Router)
@@ -41,6 +42,12 @@ export default new Router({
       path: '/products',
       name: 'Products',
       component: Products,
+      beforeEnter:isLoggedIn
+    },
+    {
+      path: '/Ritem',
+      name: 'Ritem',
+      component: Ritem,
       beforeEnter:isLoggedIn
     },
     

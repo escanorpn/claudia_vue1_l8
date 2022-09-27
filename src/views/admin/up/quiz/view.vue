@@ -1,16 +1,26 @@
 <template>
-  <div id="app">
-    <div id="editor" ref="editor">HTML TABLE HERE</div>
-    <iframe 
+ <div :style="{ padding: '0px', background: '#fff', minHeight: '360px',paddingRight:'0px',
+    paddingLeft: '0px'}">
+  <div class="loading-box" v-if="loading">
+                <div class="loader"></div>
+              </div>
+<div class="card white lighten-1 black-text" style="box-shadow:rgb(34 94 222 / 19%) -1px -11px 32px;width: 100%; max-width: 1300px;margin-left:auto; margin-right: auto;    border-radius: 0.25rem;margin-top: 25px;adding-right: 0px;
+    padding-left: 0px;">
+    <div class="card-body" style="color: rgba(1, 5, 9, 0.63);background: linear-gradient(21deg, white 9%, white 57%, #d9d0d000 1%) center center / cover fixed;">
+        <!-- <div id="editor" ref="editor">HTML TABLE HERE</div> -->
+        <iframe 
         v-if="loaded"
         :src="iframe.src"
-        :style="iframe.style"
-        :height="iframe.style.height"
-        :width="iframe.style.width"
-        type="application/pdf"
-        frameborder="0"
+      
+        frameborder="0"  style="height:380px;width:6000px;border:none;"
+        
       >loading</iframe>
-  </div>
+
+    </div>
+</div>
+ </div>
+ 
+
 </template>
 
 <script>

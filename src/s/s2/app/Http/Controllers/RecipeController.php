@@ -43,6 +43,48 @@ class RecipeController extends Controller
             //   "query" => $query
               ]);
     }
+    
+    public function index1(Request $request)
+    {
+        // $init=$request->id;
+        // $last=$request->id+4;
+        // if($request->direction==2){
+        //     $recipes = RecipeResource::collection(Recipe::where('id', '<', $request->id-$request->counter)->limit($request->counter)->orderBy('id', 'DESC')->get());
+        // }else{
+        //     $recipes = RecipeResource::collection(Recipe::where('id', '>', $request->id)->limit($request->counter)->get());
+        // }
+              //
+              $recipes = RecipeResource::collection(Recipe::all());
+            //   $recipes = RecipeResource::collection(Recipe::limit(3)->get());
+            //   $recipes = RecipeResource::collection(Recipe::where('id', '>', 1)->limit(4)->orderBy('id', 'ASC')->get());
+             
+            //   $recipes = RecipeResource::collection(Recipe::where('id', '>', $init)->where('id', '<', $last)->get());
+        //    $query=Recipe::where('id', '>','3')->toSql();
+        
+              $count = Recipe::get()->count();
+              return response()->json([
+              "success" => true,
+              "message" => "Recipe List",
+              "val" => "2",
+              "data" => $recipes,
+              "count" => $count,
+            //   "query" => $query
+              ]);
+    }
+    public function filtered(Request $request)
+    {
+        $recipes = RecipeResource::collection(Recipe::where('cat', '=', $request->cat)->get());
+
+              $count = Recipe::get()->count();
+              return response()->json([
+              "success" => true,
+              "message" => "Recipe List",
+              "val" => "2",
+              "data" => $recipes,
+              "count" => $count,
+            //   "query" => $query
+              ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -101,17 +143,19 @@ class RecipeController extends Controller
     public function searchRecipe(Request $request) {
         $s=$request->s;
         $recipes = [];
-        $recipes = Recipe::where('name','LIKE',"%{$s}%")
-        ->orWhere('description','LIKE',"%{$s}%")
-        ->select('name')
-        ->distinct('name')
-        ->get();
-        // $recipes=RecipeResource::collection(Recipe::query()
-        // ->where('name','LIKE',"%{$s}%")
+        // $recipes = Recipe::where('name','LIKE',"%{$s}%")
         // ->orWhere('description','LIKE',"%{$s}%")
-        // // ->groupBy('name')
+        // ->select('name')
         // ->distinct('name')
-        // ->get());
+        // ->get();
+        $recipes=RecipeResource::collection(Recipe::where('name','LIKE',"%{$s}%")
+        ->orWhere('description','LIKE',"%{$s}%")
+        // ->groupBy('name')
+        ->select('name','description','id','images')
+        ->select('*')
+        ->distinct('name')
+        ->limit(3)
+        ->get());
 
         return response()->json([
             "success" => true,
