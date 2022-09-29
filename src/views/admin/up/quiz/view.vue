@@ -9,7 +9,7 @@
     <div class="card-body" style="color: rgba(1, 5, 9, 0.63);background: linear-gradient(21deg, white 9%, white 57%, #d9d0d000 1%) center center / cover fixed;">
         <!-- <div id="editor" ref="editor">HTML TABLE HERE</div> -->
         <iframe 
-        v-if="loaded"
+        
         :src="iframe.src"
       
         frameborder="0"  style="height:380px;width:6000px;border:none;"
@@ -40,15 +40,17 @@ export default {
   methods:{
   init(){
     api.get('quiz').then((response) => {
-      console.log("response: "+ JSON.stringify(response));
+      console.log("qresponse: "+ JSON.stringify(response));
        
     this.emsg4 = response.data;
             //  this.clearForm1();
             this.error4 = true
-          if(response.data.code==2){ 
-            this.iframe.src=response.data.data.link
+          if(response.data.val==2){ 
+            this.iframe.src=response.data.data[0].link
+            // console.log("qlink: "+ JSON.stringify(response.data.data[0].link));
             // this.emsg4 = response.data.message;
             //  this.clearForm1();
+            
             // this.error4 = true
           }
           this.sending = false
