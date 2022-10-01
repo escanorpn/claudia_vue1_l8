@@ -9,6 +9,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\BlogController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +46,9 @@ Route::group(['middleware' => ['jwt.verify'],
     Route::post('/project', [ProjectController::class, 'addProject']);
     Route::delete('/project/{id}', [ProjectController::class, 'destroy']);
 
+    Route::post('/blog', [BlogController::class, 'create']);
+    Route::delete('/blog/{id}', [BlogController::class, 'destroy']);
+
     Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
     Route::post('/recipe', [RecipeController::class, 'addRecipe']);
     Route::delete('/recipe/{id}', [RecipeController::class, 'destroy']);
@@ -55,6 +59,7 @@ Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index']); 
 Route::get('/project', [ProjectController::class, 'index']);
 Route::get('/recipe', [RecipeController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
 
 Route::post('/quiz', [QuizController::class, 'update']);
 Route::get('/quiz', [QuizController::class, 'index']);
@@ -74,6 +79,8 @@ Route::post('/recipe', [RecipeController::class, 'index']);
 Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
 Route::post('/frecipe', [RecipeController::class, 'filtered']);
 Route::get('/quiz', [QuizController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
+
 
 // Route::post('/login', [AuthController::class, 'login']);
 

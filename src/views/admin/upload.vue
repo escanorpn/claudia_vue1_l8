@@ -9,53 +9,7 @@
       arrows maxHeight="400px" v-model="data" /> -->
         <div>
     <a-tabs default-active-key="1" @change="callback">
-    
-  <!-- <a-tab-pane key="4" tab="Project" force-render>
-    <form novalidate style="
-    margin-left: auto;
-    margin-right: auto;z-index:0;
-    justify-content: space-around;" class="md-layout" @submit.prevent="validateProject">
-      <md-card class="md-layout-item md-size-50 md-small-size-100">
-        <md-card-header>
-          <div class="md-title">Project</div>
-          </md-card-header>
-
-        <md-card-content>
-     
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-small-size-100">
-            
-              <mdb-input
-                type="textarea"
-                outline
-                inputClass="z-depth-1 p-3"
-                label="Description"  :rows="3"
-                :disabled="sending"
-                v-model="desc4"
-              />
-              
-             
-          </div>
-        </div>
-            <div class="md-layout md-gutter">
-      
-            <div class="md-layout-item md-small-size-100">
-              <mdb-input type="text" label="Duration" outline :disabled="sending" 
-              v-model="heading4" name="Duration" />
-
-            </div>
-          </div>
-          
   
-        </md-card-content>
-          <div class="text-center py-4 mt-3">
-          <mdb-btn style="color:#e9ecef;background-color:#0c0f24;" color="" type="submit" :disabled="sending">Add</mdb-btn>
-        </div>
-
-      </md-card>
-        <md-snackbar :md-active.sync="error4">{{ emsg4 }} </md-snackbar>
-      </form>
-      </a-tab-pane> -->
      
   <a-tab-pane key="4" tab="Recipes" force-render>
       <Recipe/>
@@ -63,6 +17,9 @@
       
   <a-tab-pane key="5" tab="Quiz" force-render>
       <Quize/>
+      </a-tab-pane>
+  <a-tab-pane key="1" tab="Blog" force-render>
+      <Blog/>
       </a-tab-pane>
 
   <a-tab-pane key="3" tab="Services" force-render>
@@ -187,32 +144,7 @@
       </a-tab-pane>
 
       
-       <a-tab-pane key="1" tab="Gallery" force-render>
-        <form novalidate style="
-    margin-left: auto;
-    margin-right: auto;z-index:0;
-    justify-content: space-around;" class="md-layout" @submit.prevent="validateGallery">
-      <md-card class="md-layout-item md-size-50 md-small-size-100">
-        <md-card-header>
-        </md-card-header>
-
-        <md-card-content>
-                <div class="md-layout md-gutter">
-            <div class="md-layout-item md-small-size-100">
-           <md-field :class="getValidationClass('gImages')">
-            <UploadImages  @changed="handleGimages"/>
-            <span class="md-error" v-if="!$v.form.gImages.required">An Image is required</span>
-          </md-field>
-            </div>
-          </div>
-        </md-card-content>
-          <div class="text-center py-4 mt-3">
-          <mdb-btn style="color:#e9ecef;background-color:#0c0f24;" color="" type="submit" :disabled="sending">Add</mdb-btn>
-        </div>
-      </md-card>
-      <md-snackbar :md-active.sync="error3">{{ emsg3 }} </md-snackbar>
-    </form>
-      </a-tab-pane>
+     
     </a-tabs>
   </div>
     
@@ -226,6 +158,7 @@
   import {  mdbCard, mdbCardBody,mdbBtn, mdbInput,  } from 'mdbvue';
   import Recipe from "../admin/up/Recipe/upload.vue"
   import Quize from "../admin/up/quiz/quiz.vue"
+  import Blog from "../admin/up/blog/up.vue"
   
  import UploadImages from "vue-upload-drop-images"
   import { validationMixin } from 'vuelidate';
@@ -246,7 +179,8 @@
         mdbBtn,
         mdbInput, 
         Recipe,
-        Quize
+        Quize,
+        Blog
         // mdbIcon,
         // mdbDatatable2 
       },
