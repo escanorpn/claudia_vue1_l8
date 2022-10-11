@@ -6,7 +6,7 @@
     justify-content: space-around;" class="md-layout" @submit.prevent="validateQuize">
       <md-card class="md-layout-item md-size-90 md-small-size-100">
         <md-card-header>
-          <div class="md-title">Quiz</div>
+          <div class="md-title">Blog</div>
           </md-card-header>
 
         <md-card-content>

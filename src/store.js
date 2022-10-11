@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 
 
+
 const base="https://sclaudia.losenviskas.com/";
 // const base="http://localhost/w/vue1/";
 
