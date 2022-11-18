@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\IgController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -80,6 +81,9 @@ Route::post('/srecipe', [RecipeController::class, 'searchRecipe']);
 Route::post('/frecipe', [RecipeController::class, 'filtered']);
 Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/blog', [BlogController::class, 'index']);
+Route::post('/blogd', [BlogController::class, 'desc']);
+Route::get('/gupdate', [IgController::class, 'gupdate']);
+Route::post('/mailChimp', [IgController::class, 'mailChimp']);
 
 
 // Route::post('/login', [AuthController::class, 'login']);

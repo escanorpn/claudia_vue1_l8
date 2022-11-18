@@ -15,13 +15,31 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-            $blogs = Blog::all();
+        // $blogs = Blog::all();
+        $blogs = Blog::select( 'id','cover','header','created_at')->get();
+            //   $count = Recipe::get()->count();
+              return response()->json([
+              "success" => true,
+              "message" => "Blog List",
+              "val" => "2",
+              "data" => $blogs,
+            //   "count" => $count,
+            //   "query" => $query
+              ]);
+    }
+    public function desc(Request $request)
+    {
+            // $blogs = Blog::all();
+            $dec = DB::table('blogs')
+            ->where('id', '=', $request->id)
+            ->select( 'id','blog')
+            ->get();
             //   $count = Recipe::get()->count();
               return response()->json([
               "success" => true,
               "message" => "Recipe List",
               "val" => "2",
-              "data" => $blogs,
+              "data" => $desc,
             //   "count" => $count,
             //   "query" => $query
               ]);
