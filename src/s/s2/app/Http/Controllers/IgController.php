@@ -106,7 +106,7 @@ return json_decode($response);
         $gupdated_at=$item[0]->updated_at;
         $diff = now()->diffInDays($gupdated_at);
      $r=[];
-        if($diff>30){
+        if($diff>10){
             $r=$this->gUrl($gurl);
             $gurl=$r->access_token;
             Ig::where('id', 1)->update(['url' => $r->access_token]);
